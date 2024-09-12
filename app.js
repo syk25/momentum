@@ -17,3 +17,16 @@ title.addEventListener('click', handleTitleClick); // 태그가 이벤트를 듣
 2. 태그에 이벤트리스터 정의하기
 3. 함수 정의하기
 4. 이벤트리스너 설정하기 */
+
+function handleTitleMouseenter() {
+    title.style.color = 'green';
+    console.log('pointer on the mouse.');
+}
+
+function handleTitleMouseleave() {
+    title.style.color = 'purple';
+    console.log('pointer leaved the mouse.');
+}
+
+title.addEventListener('mouseenter', handleTitleMouseenter);
+title.addEventListener('mouseleave', handleTitleMouseleave);
