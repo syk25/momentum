@@ -2,30 +2,17 @@
 const h1 = document.querySelector('div.hello:first-child h1');
 
 function handleTitleClick() {
-    /* NOTE: 직접 CSS를 변경하는 법 */
-    // const color = h1.style.color; // getter
-    // let newColor; // setter
-    // if (color === 'blue') {
-    //     newColor = 'tomato';
+    /* NOTE: classList 속성, contains, remove 메서드 */
+    // const clickedClass = 'active';
+    // if (h1.classList.contains(clickedClass)) {
+    //     h1.classList.remove(clickedClass); // 변경하기보다는 클래스 제거
     // } else {
-    //     newColor = 'blue';
+    //     h1.classList.add(clickedClass); // 변경하기보다는 클래스를 추가
     // }
-    // h1.style.color = newColor; // setting color
-    // h1.innerText = 'Changed the Color.';
-    // console.log('Changed the color');
+    // console.log(h1.className);
 
-    /* NOTE: HTML태그를 변경하는 법 */
-    // h1.className = 'active'; // 클래스 네임을 변경해버림 -> 결과적으로 css 적용
-    const name = h1.className; // h1.className은 getter 이자 setter
-    const clickedClass = 'active';
-    let newName;
-    if (name === clickedClass) {
-        newName = '';
-    } else {
-        newName = clickedClass;
-    }
-    h1.className = newName;
-    console.log(name);
+    /* NOTE: 위의 방법을 한줄로 표현 */
+    h1.classList.toggle('active');
 }
 
 h1.addEventListener('click', handleTitleClick);
