@@ -8,6 +8,9 @@ function onLoginSubmit(event) {
     event.preventDefault();
     loginForm.classList.add(HIDDEN_CLASSNAME);
     const username = loginInput.value;
+
+    localStorage.setItem("username", username);
+
     greeting.innerText = `Hello ${username} !`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
     console.log(username);
@@ -24,3 +27,4 @@ loginForm.addEventListener("submit", onLoginSubmit);
 link.addEventListener("click", onMovingToLink);
 
 // 로그인 클릭시 form 없애기 - css로 적용하기
+/* local storage: 사용자가 입력한 정보의 임시저장소 */
