@@ -17,20 +17,11 @@ function onLoginSubmit(event) {
     paintGreetings(username);
 }
 
-function onMovingToLink(event) {
-    event.preventDefault();
-    console.dir(event);
-    console.dir(link);
-    console.log(link.href);
-}
-
 // 함수로 중복 코드 제거
 function paintGreetings(username) {
     greeting.classList.remove("hidden");
     greeting.innerText = `Hello ${username} !`;
 }
-
-link.addEventListener("click", onMovingToLink);
 
 const savedUsername = localStorage.getItem(USERNAME_KEY);
 
