@@ -8,7 +8,7 @@ function sayHello() {
 }
 
 // 기다리기
-setTimeout(sayHello, 5000);
+// setTimeout(sayHello, 5000);
 
 // 반복하기
 setInterval(getClock, 1000);
@@ -20,7 +20,6 @@ function getClock() {
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
     const seconds = String(date.getSeconds()).padStart(2, "0");
-    // console.log(`${hours}:${minutes}:${seconds}`);
 }
 
 // 시계 만듦
