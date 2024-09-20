@@ -2,24 +2,36 @@ const todoForm = document.getElementById("todo-form");
 const todoInput = todoForm.querySelector("input");
 const todoList = document.getElementById("todo-list");
 
-const todos = []; // 2) 투두를 저장할 배열 선언
+let todos = [];
+const TODOS_KEY = "todos";
 
 function handleTodoSubmit(event) {
     event.preventDefault();
     const newTodo = todoInput.value;
-    todoInput.value = "";
-    todos.push(newTodo); // 3) 배열에 투두 추가하기
+    todos.push(newTodo);
     paintTodo(newTodo);
+    todoInput.value = "";
 }
 
-/* NOTE: 투두리스트 저장하기 */
-function saveTodo() { // 1) 함수 정의하기
-    localStorage.setItem("todos", JSON.stringify(todos));  // 4) 투두리스트를 로커스토리지에 스트링 형태로 저장
+function saveTodo() {
+    localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
 }
 
 function deleteTodo(event) {
     const li = event.target.parentNode;
     li.remove();
+}
+
+/* NOTE: 투두 로딩하기 */
+function loadTodos() {
+    const savedTodos = JSON.parse(localStorage.getItem(TODOS_KEY)); // 1) 아이템 불러오기
+
+    // 2) 로컬스토리지에서 아이템 로딩하기
+    if (savedTodos != null) {
+        const parsedTodos = savedTodos;
+        todos = parsedTodos; // 3) 전역변수 갱신하기(스테이트와 유사역할)
+        parsedTodos.forEach((item) => paintTodo(item)); // NOTE: forEach 함수, 화살표함수 4) 모든 요소를 화면에 띄우기
+    }
 }
 
 function paintTodo(newTodo) {
@@ -36,7 +48,9 @@ function paintTodo(newTodo) {
     li.appendChild(button);
     todoList.appendChild(li);
 
-    saveTodo(); // 5) 저장함수 추가
+    saveTodo();
 }
 
 todoForm.addEventListener("submit", handleTodoSubmit);
+
+loadTodos();
